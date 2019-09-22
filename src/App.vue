@@ -7,7 +7,7 @@
     <!-- 低部 tabBar 区域 -->
     <!-- mui-active: 高亮类名 -->
     <nav class="mui-bar mui-bar-tab">
-      <router-link class="mui-tab-item " to="/home">
+      <router-link class="mui-tab-item" to="/home">
         <span class="mui-icon mui-icon-home"></span>
         <span class="mui-tab-label">首页</span>
       </router-link>
@@ -26,9 +26,12 @@
         <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
-    
+
     <!-- 中间部分 router-view 区域 -->
-    <router-view></router-view>
+    <!-- 动画切换 -->
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -44,9 +47,24 @@ export default {
 <style scoped lang="scss">
 .p-top {
   padding-top: 40px;
+  overflow-x: hidden;
+  position: absolute;
   h1 {
     padding: 0;
     margin: 0;
   }
+}
+.v-enter{
+  opacity: 0;
+  transform: translateX(100%);
+}
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
 }
 </style>

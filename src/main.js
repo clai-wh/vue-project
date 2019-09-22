@@ -30,10 +30,13 @@ import "./lib/mui/examples/hello-mui/css/icons-extra.css"
 // 按需导入 Mint-UI 组件
 // 引入 Header 组件 (顶部导航栏)
 // 引入 Swipe 和 SwipeItem 组件 (首页轮播图)
-import { Header,Swipe, SwipeItem } from 'mint-ui'
+// 引入 search 组件 (搜索)
+import { Header,Swipe, SwipeItem, Search } from 'mint-ui'
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Search.name, Search)
+
 
 // Vue实例对象
 let vm = new Vue({
