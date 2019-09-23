@@ -9,42 +9,40 @@
     <!-- 九宫格菜单 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/newList">
           <span class="mui-icon mui-icon-location-filled"></span>
           <div class="mui-media-body">新闻资讯</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <span class="mui-icon mui-icon-paperplane">
-            <!-- <span class="mui-badge">0</span> -->
-          </span>
+        <router-link to="/home/sharePhoto">
+          <span class="mui-icon mui-icon-paperplane"></span>
           <div class="mui-media-body">图片分享</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/toBuy">
           <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
           <div class="mui-media-body">商品够买</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/feedback">
           <span class="mui-icon mui-icon-chat"></span>
           <div class="mui-media-body">留言反馈</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/videos">
           <span class="mui-icon mui-icon-extra mui-icon-extra-computer"></span>
           <div class="mui-media-body">视频专区</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/contact">
           <span class="mui-icon mui-icon-phone"></span>
           <div class="mui-media-body">联系我们</div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -89,15 +87,6 @@ div {
         width: 100%;
         height: 100%;
       }
-      &:nth-child(1) {
-        background-color: red;
-      }
-      &:nth-child(2) {
-        background-color: blue;
-      }
-      &:nth-child(3) {
-        background-color: cyan;
-      }
     }
   }
   .mui-grid-view.mui-grid-9 {
@@ -110,7 +99,7 @@ div {
   .mui-grid-view .mui-table-view-cell .mui-media-body {
     font-size: 14px;
   }
-  .mui-table-view-cell > a:not(.mui-btn) {
+  .mui-table-view-cell > router-link:not(.mui-btn) {
     color: white;
   }
   .mui-icon {

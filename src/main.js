@@ -17,11 +17,6 @@ Vue.use(VueResource)
 // 导入自己的路由模块
 import router from "./router.js"
 
-// 安装路由
-
-
-// 引入 app 样式
-import "./css/app.css"
 // 引入 MUI 样式
 import "./lib/mui/dist/css/mui.css"
 import "./lib/mui/examples/hello-mui/css/icons-extra.css"

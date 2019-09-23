@@ -1,5 +1,5 @@
 <template>
-  <div class="p-top">
+  <div class="app-container">
     <!-- 顶部 header 区域 -->
     <mt-header fixed title="爱凡之家"></mt-header>
     <!-- <h1>123</h1> -->
@@ -30,7 +30,7 @@
     <!-- 中间部分 router-view 区域 -->
     <!-- 动画切换 -->
     <transition>
-      <router-view></router-view>
+      <router-view style="margin: auto;"></router-view>
     </transition>
   </div>
 </template>
@@ -45,23 +45,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.p-top {
+.app-container {
+  position: relative;
   padding-top: 40px;
+  padding-bottom: 50px;
   overflow-x: hidden;
-  position: absolute;
-  h1 {
-    padding: 0;
-    margin: 0;
-  }
 }
-.v-enter{
+.v-enter {
   opacity: 0;
   transform: translateX(100%);
 }
 .v-leave-to {
+  position: absolute;
   opacity: 0;
   transform: translateX(-100%);
-  position: absolute;
 }
 .v-enter-active,
 .v-leave-active {
