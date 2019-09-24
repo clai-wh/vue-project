@@ -67,7 +67,6 @@ export default {
           Toast("轮播图加载成功!!!");
         } else {
           Toast("请求超时...");
-          // alert("请求超时...")
         }
       });
     }

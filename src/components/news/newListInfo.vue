@@ -12,11 +12,17 @@
         页面正在维护中...请跳转到最新页面
       </a>
     </div>
+    <hr>
+    <div>
+      <my-comment></my-comment>
+    </div>
   </div>
 </template>
 
 <script>
 import { Toast } from "mint-ui";
+// 引入评论子组件
+import comment from "../subcomponent/comment.vue"
 export default {
   data() {
     return {
@@ -35,7 +41,7 @@ export default {
       // console.log(this.$route.params.docid);
       this.$http.get("https://www.apiopen.top/journalismApi").then(res => {
         if (res.status === 200) {
-          console.log(res.body.data.auto);
+          // console.log(res.body.data.auto);
           res.body.data.auto.forEach(item => {
             // console.log(item.docid);
             if (item.docid == this.id) {
@@ -55,6 +61,9 @@ export default {
         }
       });
     }
+  },
+  components: {
+    "my-comment": comment
   }
 };
 </script>

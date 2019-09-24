@@ -30,7 +30,7 @@ let router = new VueRouter({
         { path: "/home/feedback", component: feedback },
         { path: "/home/videos", component: videos },
         { path: "/home/contact", component: contact },
-        { path: "/home/newList/newListInfo/:docid", component: newListInfo }
+        { path: "/home/newList/newListInfo/:docid", component: newListInfo },
     ],
     // 覆盖默认的路由高亮的样式类, 把 router-link-active 转变为 mui-active
     linkActiveClass: "mui-active"

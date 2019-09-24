@@ -22,20 +22,16 @@ import "./lib/mui/dist/css/mui.css"
 import "./lib/mui/examples/hello-mui/css/icons-extra.css"
 import "./lib/mui/examples/hello-mui/css/feedback.css"
 
-// 引入 MUI js样式
-
-
 // 按需导入 Mint-UI 组件
-// 引入 Header 组件 (顶部导航栏)
-// 引入 Swipe 和 SwipeItem 组件 (首页轮播图)
-// 引入 search 组件 (搜索)
-import { Header, Swipe, SwipeItem, Search, Navbar, TabItem } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Search, Navbar, TabItem, button } from 'mint-ui'
 Vue.component(Header.name, Header)
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
 Vue.component(Search.name, Search)
-Vue.component(Navbar.name, Navbar);
-Vue.component(TabItem.name, TabItem);
+Vue.component(Navbar.name, Navbar)
+Vue.component(TabItem.name, TabItem)
+Vue.component(button.name, button)
+
 
 import moment from "moment"
 
