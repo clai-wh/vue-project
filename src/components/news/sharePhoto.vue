@@ -1,16 +1,47 @@
 <template>
   <div>
-    <h3>图片分享页面</h3>
-    <header class="mui-bar mui-bar-nav">
-      <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-      <h1 class="mui-title">左右滑动分页</h1>
-    </header>
+    <div id="slider" class="mui-slider">
+      <div
+        id="sliderSegmentedControl"
+        class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+      >
+        <div class="mui-scroll">
+          <a
+            class="mui-control-item mui-active"
+            href="#item1mobile"
+            data-wid="tab-top-subpage-1.html"
+          >推荐</a>
+          <a class="mui-control-item" href="#item2mobile" data-wid="tab-top-subpage-2.html">热点</a>
+          <a class="mui-control-item" href="#item3mobile" data-wid="tab-top-subpage-3.html">北京</a>
+          <a class="mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">社会</a>
+          <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">娱乐</a>
+          <a class="mui-control-item" href="#item6mobile" data-wid="tab-top-subpage-6.html">科技</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// import mui from "../../lib/mui/examples/hello-mui/js/mui.js"
+import mui from "../../lib/mui/dist/js/mui.min.js";
+// import ss from '../../lib/mui/examples/hello-mui/js/webviewGroup.js';
 export default {
-    
-}
+  data() {
+    return {};
+  },
+  mounted() {
+    // 初始化scroll控件：
+    mui(".mui-scroll-wrapper").scroll({
+      // flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+      deceleration: 0.0005
+    });
+  },
+  methods: {}
+};
 </script>
+
+<style lang="scss" scoped>
+* {
+  touch-action: pan-y;
+}
+</style>

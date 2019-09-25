@@ -1,17 +1,9 @@
 <template>
   <div>
-    <!-- <h1>search</h1> -->
-    <mt-search v-model="value" cancel-text="取消" placeholder="搜索"></mt-search>
+    <h1>search</h1>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      value: ""
-    };
-  },
-  methods: {}
-};
+export default {};
 </script>
