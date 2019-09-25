@@ -28,7 +28,7 @@ import 'mint-ui/lib/style.css'
 
 Vue.use(MintUI)
 
-// 按需导入 Mint-UI 组件
+// 按需导入 Mint-UI 组件 (移除严格模式时, 报错: 按需导入的应用错误)
 // import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
 // Vue.component(Header.name, Header)
 // Vue.component(Swipe.name, Swipe)
@@ -37,15 +37,15 @@ Vue.use(MintUI)
 
 import moment from "moment"
 // 定义全局过滤器 (格式化时间)
-Vue.filter("dateFormat", function(dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
-    return moment(dataStr).format(pattern);
+Vue.filter("dateFormat", function(dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+	return moment(dataStr).format(pattern);
 })
 
 // Vue实例对象
 let vm = new Vue({
-    el: "#app",
-    // 通过 render 函数, 把模板渲染到页面上
-    render: h => h(app),
-    // 挂在路由对象
-    router
+	el: "#app",
+	// 通过 render 函数, 把模板渲染到页面上
+	render: h => h(app),
+	// 挂在路由对象
+	router
 })
