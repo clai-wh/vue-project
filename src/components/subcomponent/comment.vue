@@ -9,7 +9,7 @@
         <div class="cmt-title">
           <span>第 {{ i + 1 }} 楼</span>
           <span>用户: {{ item.top_commentsName }}</span>
-          <span>发表时间: {{ item.passtime | dateFormat }}</span>
+          <span>发表时间: {{ item.passtime }}</span>
         </div>
         <div class="cmt-body">{{ item.text }}</div>
       </div>

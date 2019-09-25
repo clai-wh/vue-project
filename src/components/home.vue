@@ -62,7 +62,7 @@ export default {
     getCarousel() {
       this.$http.get("https://www.apiopen.top/meituApi?page=3").then(res => {
         if (res.status == 200) {
-          console.log(res.body);
+          // console.log(res.body);
           this.carousel = res.body.data;
           Toast("轮播图加载成功!!!");
         } else {
