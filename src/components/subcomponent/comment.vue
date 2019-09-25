@@ -1,7 +1,7 @@
 <template>
   <div class="cmt-container">
     <h3>评论区</h3>
-    <textarea class="textarea" placeholder="评论区" v-model="msg"></textarea>
+    <textarea class="textarea" rows="4" placeholder="评论区" v-model="msg"></textarea>
     <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
     <div class="cmt-list" v-for="(item, i) in commetLists" :key="item.soureid">
       <hr />
@@ -34,7 +34,7 @@ export default {
         .get("https://www.apiopen.top/satinGodApi?type=1&page=" + this.page)
         .then(res => {
           if (res.body.code === 200) {
-            console.log(res.data);
+            // console.log(res.data);
             // this.commetLists = res.body.data;
             // 每当获取新数据的时候, 不要把老数据覆盖清空, 而是应该以老数据, 拼接新数据
             // this.commetLists = this.commetLists.concat(res.body.data);
@@ -58,7 +58,7 @@ export default {
       let newComment = {
         soureid: Date.now(),
         top_commentsName: "匿名用户",
-        passtime: Date.now(),
+        passtime: (new Date()).toLocaleString(),
         text: this.msg
       };
       // 从 localStorage 中获取最新数据, 并转换为 字符串

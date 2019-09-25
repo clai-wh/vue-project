@@ -38,6 +38,11 @@ import "mint-ui/lib/style.css"
 // 手动安装 Mint-ui
 Vue.use(MintUI)
 
+// 缩略图 vue-preview 插件
+import VuePreview from "vue-preview"
+Vue.use(VuePreview)
+
+
 
 import moment from "moment"
 
