@@ -1,6 +1,6 @@
 <template>
 	<div class="goods-container">
-		<router-link to="/home/goodsList/goodsInfo" tag="div" class="a-product" v-for="(item, val, i) in goods" :key="i">
+		<router-link :to="'/home/goodsList/goodsInfo/' + item.channelid" tag="div" class="a-product" v-for="(item, val, i) in goods" :key="i">
 			<img :src="item.thumb" alt="photo" />
 			<h3>{{ item.name }}</h3>
 			<div class="good-info">

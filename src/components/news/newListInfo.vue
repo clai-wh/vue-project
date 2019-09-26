@@ -54,9 +54,7 @@ export default {
               this.src = item.picInfo[0].url;
             }
           });
-        } else {
-          Toast("failure");
-        }
+        } 
       });
     }
   },

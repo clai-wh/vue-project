@@ -16,6 +16,8 @@ import photoInfo from "./components/news/photoInfo.vue"
 
 import goodsList from "./components/news/goodsList.vue"
 import goodsInfo from "./components/news/goodsInfo.vue"
+import goodsInfoDetails from "./components/news/goodsInfoDetails.vue"
+import goodsComment from "./components/news/goodsComment.vue"
 
 import feedback from "./components/news/feedback.vue"
 import videos from "./components/news/videos.vue"
@@ -30,15 +32,20 @@ let router = new VueRouter({
         { path: "/number", component: number },
         { path: "/shopCar", component: shopCar },
         { path: "/search", component: search },
-        { path: "/home/newList", component: newList },
-        { path: "/home/sharePhoto", component: sharePhoto },
-        { path: "/home/goodsList", component: goodsList },
-        { path: "/home/feedback", component: feedback },
         { path: "/home/videos", component: videos },
+        { path: "/home/feedback", component: feedback },
         { path: "/home/contact", component: contact },
+				
+        { path: "/home/newList", component: newList },
         { path: "/home/newList/newListInfo/:docid", component: newListInfo },
+				
+        { path: "/home/sharePhoto", component: sharePhoto },
 				{ path: "/home/sharePhoto/photoInfo", component: photoInfo },
-				{ path: "/home/goodsList/goodsInfo", component: goodsInfo }
+				
+        { path: "/home/goodsList", component: goodsList },
+				{ path: "/home/goodsList/goodsInfo/:id", component: goodsInfo },
+				{ path: "/home/goodsList/goodsInfo/goodsInfoDetails/:id", component: goodsInfoDetails, name:"goodsInfoDetails" },
+				{ path: "/home/goodsList/goodsInfo/goodsComment", component: goodsComment }
     ],
     // 覆盖默认的路由高亮的样式类, 把 router-link-active 转变为 mui-active
     linkActiveClass: "mui-active"

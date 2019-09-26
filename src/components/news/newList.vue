@@ -35,9 +35,15 @@ export default {
         if (res.status == 200) {
           // console.log(res);
           this.infoLists = res.body.data.auto;
-          Toast("资讯数据请求成功!!!");
+          Toast({
+						message: "资讯数据请求成功!!!",
+						duration: 1000
+					});
         } else {
-          Toast("数据请求失败...");
+          Toast({
+						message: "数据请求失败...",
+						duration: 1500
+					});
         }
       });
     }

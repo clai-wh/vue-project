@@ -3,7 +3,9 @@
 		<!-- 商品轮播 -->
 		<div class="mui-card">
 			<div class="mui-card-content">
-				<div class="mui-card-content-inner"><my-swipe :carousel="carousel" :isFull="true"></my-swipe></div>
+				<div class="mui-card-content-inner">
+					<my-swipe :carousel="carousel" :isFull="true"></my-swipe>
+				</div>
 			</div>
 		</div>
 
@@ -16,22 +18,16 @@
 						<div class="price">
 							<span>
 								市场价:
-								<b class="old-price">$1234</b>
+								<del>$1234</del>
 							</span>
 							<span>
-								销售价:
+								&nbsp;&nbsp; 销售价:
 								<b class="new-price">$1234</b>
 							</span>
 						</div>
 						<div class="count">
-							<span>购买数量:</span>
-							<div class="mui-numbox" data-numbox-step="1" data-numbox-min="1" data-numbox-max="10">
-								<!-- "-"按钮，点击可减小当前数值 -->
-								<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
-								<input class="mui-numbox-input" type="number" value="1" />
-								<!-- "+"按钮，点击可增大当前数值 -->
-								<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
-							</div>
+							<span>购买数量: &nbsp;</span>
+							<numbox></numbox>
 						</div>
 						<div>
 							<mt-button type="primary" size="small">立即购买</mt-button>
@@ -62,8 +58,8 @@
 				</div>
 			</div>
 			<div class="mui-card-footer">
-				<mt-button type="primary" size="large" plain>图文介绍</mt-button>
-				<mt-button type="danger" size="large" plain>商品评价</mt-button>
+				<mt-button @click="toGoodsDetails(id)" type="primary" size="large" plain>图文介绍</mt-button>
+				<mt-button @click="toGoodsComment" type="danger" size="large" plain>商品评价</mt-button>
 			</div>
 		</div>
 	</div>
@@ -71,18 +67,20 @@
 
 <script>
 import swipe from '../subcomponent/swipe.vue';
-import mui from '../../lib/mui/dist/js/mui.min.js';
+import numbox from "../subcomponent/numbox.vue"
+
 export default {
 	data() {
 		return {
+			id: this.$route.params.id,
 			carousel: []
 		};
 	},
 	created() {
 		this.getCarousel();
-		mui('mui-numbox').numbox();
 	},
 	methods: {
+		// 获取轮播图
 		getCarousel() {
 			this.$http.get('https://www.apiopen.top/journalismApi').then(res => {
 				if (res.status == 200) {
@@ -93,10 +91,22 @@ export default {
 					this.carousel = res.body.data.auto;
 				}
 			});
+		},
+		// 点击使用 编程式导航
+		// 商品详情介绍
+		toGoodsDetails (id) {
+			// console.log(this)
+			this.$router.push({name: "goodsInfoDetails", params: { id }});
+		},
+		// 商品评价
+		toGoodsComment () {
+			this.$router.push({ path: "/home/goodsList/goodsInfo/goodsComment" });
 		}
+		
 	},
 	components: {
-		'my-swipe': swipe
+		'my-swipe': swipe,
+		numbox
 	}
 };
 </script>
@@ -105,41 +115,22 @@ export default {
 .good-info-container {
 	background-color: #eeeeee;
 	overflow: hidden;
-	.mui-card {
-		.shop-car {
-			.price {
-				font-size: 13px;
-				color: #333333;
-				span {
-					&:nth-child(2) {
-						margin-left: 10px;
-					}
-					b {
-						padding-left: 5px;
-					}
-					.old-price {
-						text-decoration: line-through;
-						color: #696969;
-					}
-					.new-price {
-						color: #c40000;
-						font-size: 17px;
-					}
-				}
-			}
-			.count {
-				margin: 5px 0 10px 0;
-				.mui-numbox {
-					width: 120px;
-					height: 25px;
-				}
-			}
+	.price {
+		del {
+			color: #696969;
+		}
+		.new-price {
+			color: #c40000;
+			font-size: 17px;
 		}
 	}
-	.mui-card-footer{
+	.count {
 		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
+		align-items: center;
+		margin: 5px 0 10px 0;
+	}
+	.mui-card-footer {
+		display: block;
 		button:nth-child(2){
 			margin-top: 8px;
 		}

@@ -1,8 +1,12 @@
 <template>
 	<div class="app-container">
 		<!-- 顶部 header 区域 -->
-		<mt-header fixed title="爱凡之家"></mt-header>
-		<!-- <h1>123</h1> -->
+			<!-- <mt-header fixed title="爱凡之家"></mt-header> -->
+			<mt-header fixed title="爱凡之家">
+			  <router-link to="/home" slot="left">
+			    <mt-button @click="goBack" class="mui-icon mui-icon-back">返回</mt-button>
+			  </router-link>
+			</mt-header>
 
 		<!-- 低部 tabBar 区域 -->
 		<!-- mui-active: 高亮类名 -->
@@ -27,24 +31,34 @@
 
 		<!-- 中间部分 router-view 区域 -->
 		<!-- 动画切换 -->
-		<transition><router-view style="margin: auto;"></router-view></transition>
+		<transition>
+			<router-view style="margin: auto;"></router-view>
+		</transition>
 	</div>
 </template>
 
 <script>
 export default {
-	data() {
-		return {};
-	},
-	methods: {}
-};
+	methods:{
+		// 返回上个页面
+		goBack () {
+			// console.log(this);
+			this.$router.go(-1);
+		}
+	}
+}
 </script>
 
 <style scoped lang="scss">
 .mint-header.is-fixed {
-	box-shadow: 0 0 2px #333;
-	z-index: 999;
+	font-size: 15px;
+	box-shadow: 0 0 2px #363636;
+  z-index: 999;
 }
+.mint-header .mint-button{
+	font-size: 14px;
+} 
+
 .app-container {
 	position: relative;
 	padding-top: 40px;
