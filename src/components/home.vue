@@ -21,7 +21,7 @@
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to="/home/toBuy">
+        <router-link to="/home/goodsList">
           <span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
           <div class="mui-media-body">商品够买</div>
         </router-link>

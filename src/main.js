@@ -51,7 +51,6 @@ Vue.filter("dateFormat", function(dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
     return moment(dataStr).format(pattern);
 })
 
-
 // Vue实例对象
 let vm = new Vue({
     el: "#app",

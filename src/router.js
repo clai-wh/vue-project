@@ -14,7 +14,9 @@ import newListInfo from "./components/news/newListInfo.vue"
 import sharePhoto from "./components/news/sharePhoto.vue"
 import photoInfo from "./components/news/photoInfo.vue"
 
-import toBuy from "./components/news/toBuy.vue"
+import goodsList from "./components/news/goodsList.vue"
+import goodsInfo from "./components/news/goodsInfo.vue"
+
 import feedback from "./components/news/feedback.vue"
 import videos from "./components/news/videos.vue"
 import contact from "./components/news/contact.vue"
@@ -30,12 +32,13 @@ let router = new VueRouter({
         { path: "/search", component: search },
         { path: "/home/newList", component: newList },
         { path: "/home/sharePhoto", component: sharePhoto },
-        { path: "/home/toBuy", component: toBuy },
+        { path: "/home/goodsList", component: goodsList },
         { path: "/home/feedback", component: feedback },
         { path: "/home/videos", component: videos },
         { path: "/home/contact", component: contact },
         { path: "/home/newList/newListInfo/:docid", component: newListInfo },
-				{ path: "/home/sharePhoto/photoInfo", component: photoInfo }
+				{ path: "/home/sharePhoto/photoInfo", component: photoInfo },
+				{ path: "/home/goodsList/goodsInfo", component: goodsInfo }
     ],
     // 覆盖默认的路由高亮的样式类, 把 router-link-active 转变为 mui-active
     linkActiveClass: "mui-active"
