@@ -42,14 +42,15 @@ Vue.use(MintUI)
 import VuePreview from "vue-preview"
 Vue.use(VuePreview)
 
-
-
 import moment from "moment"
 
 // 定义全局过滤器 (格式化时间)
 Vue.filter("dateFormat", function(dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
     return moment(dataStr).format(pattern);
 })
+
+// 取消 Vue 所有的日志与警告。
+Vue.config.silent = true
 
 // Vue实例对象
 let vm = new Vue({

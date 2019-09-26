@@ -4,7 +4,7 @@
 		<div id="slider" class="mui-slider">
 			<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 				<div class="mui-scroll">
-					<a v-for="(item, val, i) in cates" :key="i" :class="['mui-control-item', val == 'auto' ? 'mui-active' : '']" @click="getPhotos(0)">{{ val }}</a>
+					<a v-for="(item, val, i) in cates" :key="i" :class="['mui-control-item', val == 'auto' ? 'mui-active' : '']" @tap="getPhotos(0)">{{ val }}</a>
 				</div>
 			</div>
 		</div>
@@ -44,6 +44,7 @@ export default {
 		});
 	},
 	methods: {
+		// 顶部滑块
 		getCategory(val) {
 			this.$http.get('https://www.apiopen.top/journalismApi').then(res => {
 				if (res.body.code === 200) {
@@ -52,6 +53,7 @@ export default {
 				}
 			});
 		},
+		// 获取图片
 		getPhotos(num) {
 			this.$http.get('https://www.apiopen.top/meituApi?page=' + num).then(res => {
 				if (res.body.code === 200) {

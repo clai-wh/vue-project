@@ -13,9 +13,7 @@
       </a>
     </div>
     <hr>
-    <div>
       <my-comment></my-comment>
-    </div>
   </div>
 </template>
 
