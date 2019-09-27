@@ -31,7 +31,7 @@
 							</span>
 							<span>
 								&nbsp;&nbsp; 销售价:
-								<b class="new-price">$1234</b>
+								<b class="new-price">${{ goodPrice }}</b>
 							</span>
 						</div>
 						<div class="count">
@@ -40,7 +40,7 @@
 						</div>
 						<div>
 							<mt-button type="primary" size="small">立即购买</mt-button>
-							<mt-button type="danger" size="small" @click="flag=!flag">加入购物车</mt-button>
+							<mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
 						</div>
 					</div>
 				</div>
@@ -84,6 +84,7 @@ export default {
 			id: this.$route.params.id,
 			carousel: [],
 			goodsInfo: {},
+			goodPrice: 50,
 			counts: 1,
 			flag: false
 		};
@@ -109,8 +110,11 @@ export default {
 		getGoodsInfo () {
 			this.$http.get('https://www.apiopen.top/journalismApi').then(res=>{
 				if(res.body.code === 200){
-					console.log(res.body.data.tech[2])
+					// console.log(res.body.data.tech[2])
+					// 商品对象
 					this.goodsInfo = res.body.data.tech[2];
+					// 商品单价
+					this.goodPrice = this.goodPrice * parseInt(res.body.data.tech[2].tcount);
 				}
 			});
 		},
@@ -127,7 +131,16 @@ export default {
 		// 获取 点击商品选择加入购物车的数量
 		getSelectCount (data) {
 			this.counts = data;
-			console.log("父组件获取到的数量" + this.counts);
+			// console.log("父组件获取到的数量" + this.counts);
+		},
+		// 添加到购物车中
+		addToShopCar () {
+			this.flag = !this.flag;
+			// 商品对象: { id: 该商品的ID, count: 要购买商品的数量, price: 该商品的价格, selected: false(是否被选中) }
+			// 拼接出一个, 要保存到 store 中 car 数组中的 商品信息对象
+			let goodsObjInfo = { id: this.id, count: this.counts, price: this.goodPrice, selected: true };
+			// 调用 store 中的 mutations 将商品添加到购物车
+			this.$store.commit("addToCar", goodsObjInfo);
 		},
 		// 小球动画过渡效果
 		beforeEnter (el) {

@@ -10,9 +10,12 @@ import app from "./App.vue"
 import VueRouter from "vue-router"
 // 导入 vue-resource 
 import VueResource from "vue-resource"
+// 导入 vuex 
+import Vuex from 'vuex';
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(Vuex)
 
 // 导入自己的路由模块
 import router from "./router.js"
@@ -52,11 +55,65 @@ Vue.filter("dateFormat", function(dataStr, pattern="YYYY-MM-DD HH:mm:ss"){
 // 取消 Vue 所有的日志与警告。
 Vue.config.silent = true
 
+// 获取本地存储的 car 数据, 
+let car = JSON.parse(localStorage.getItem('car') || "[]");
+
+// vuex.store 实例对象
+let store = new Vuex.Store({
+	// this.$store.state.***
+	state:{
+		// 将 购物车中的商品的数据, 同一个数据存储起来, 在 car 数据中, 存储一些商品的对象
+		// 例如: { id: 该商品的ID, count: 要购买商品的数量, price: 该商品的价格, selected: false(是否被选中) }
+		car: car
+	},
+	// this.$store.commit("方法名称", ("按需传递唯一的参数"))
+	mutations: {
+		// 点击加入购物车, 把商品信息, 保存到 store 中的 car 数组中
+		// 分析: 1. 如果购物车中已存在想要添加的商品, 只需修改商品数量即可
+		// 			 2. 购物车中没有想要的商品, 就新添加该商品到 car 中
+		addToCar (state, goodObjInfo) {
+			// 默认购物车中没有找到需要的商品
+			let findGood = false;
+			// 找到了
+			state.car.some(item=>{
+				if(item.id == goodObjInfo.id){
+					item.count += parseInt(goodObjInfo.count);
+					findGood = true;
+					return true;
+				}
+			})
+			// 如果循环完毕后, 得到的 findGood  还是为 false, 则直接把商品 添加到 car 中
+			if (!findGood) {
+				state.car.push(goodObjInfo);
+			}
+			
+			// 实行本地永久存储
+			// 将最新数据 存储到 本地存储 localStorage
+			localStorage.setItem("car", JSON.stringify(state.car));
+			 
+			
+		}
+	},
+	// this.$store.getters.***
+	getters:{
+		// 相当于 计算属性 / filters
+		getAllCount (state) {
+			let c = 0;
+			state.car.forEach(item=>{
+				c += item.count;
+			})
+			return c;
+		}
+	}
+})
+
 // Vue实例对象
 let vm = new Vue({
     el: "#app",
     // 通过 render 函数, 把模板渲染到页面上
     render: h => h(app),
-    // 挂在路由对象
-    router
+    // 挂载路由对象 到 vm 实例对象上
+    router,
+		// 挂载 store 状态管理对象 
+		store
 })
