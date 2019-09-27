@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h3>商品详情介绍</h3>
+		<h3>商品评论</h3>
 		<hr />
 		<comment></comment>
 	</div>

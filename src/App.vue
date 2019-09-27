@@ -20,7 +20,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-llb" to="/shopCar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span id="badge" class="mui-badge">0</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-llb" to="/search">
@@ -52,7 +52,7 @@ export default {
 <style scoped lang="scss">
 .mint-header.is-fixed {
 	font-size: 15px;
-	box-shadow: 0 0 2px #363636;
+	box-shadow: 0 0 3px #999;
   z-index: 999;
 }
 .mint-header .mint-button{
@@ -78,7 +78,9 @@ export default {
 .v-leave-active {
 	transition: all 0.5s ease;
 }
-
+.mui-bar{
+	box-shadow: 0 0 3px #999;
+}
 .mui-bar-tab .mui-tab-item-llb.mui-active {
 	color: #007aff;
 }

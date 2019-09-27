@@ -45,7 +45,7 @@ let router = new VueRouter({
         { path: "/home/goodsList", component: goodsList },
 				{ path: "/home/goodsList/goodsInfo/:id", component: goodsInfo },
 				{ path: "/home/goodsList/goodsInfo/goodsInfoDetails/:id", component: goodsInfoDetails, name:"goodsInfoDetails" },
-				{ path: "/home/goodsList/goodsInfo/goodsComment", component: goodsComment }
+				{ path: "/home/goodsList/goodsInfo/goodsComment/:id", component: goodsComment }
     ],
     // 覆盖默认的路由高亮的样式类, 把 router-link-active 转变为 mui-active
     linkActiveClass: "mui-active"

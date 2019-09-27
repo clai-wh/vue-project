@@ -66,10 +66,10 @@ export default {
 						item.url = item.picInfo[0].url;
 					});
 					this.carousel = res.body.data.auto;
-					Toast({
-						message: '轮播图加载成功!!!',
-						duration: 1000
-					});
+					// Toast({
+					// 	message: '轮播图加载成功!!!',
+					// 	duration: 1000
+					// });
 				} else {
 					Toast({
 						message: '请求超时...',

@@ -54,6 +54,7 @@ export default {
     },
     // 发表评论
     postComment() {
+			
       // 设置对象 (最新数据/评论)
       let newComment = {
         soureid: Date.now(),
@@ -61,6 +62,9 @@ export default {
         passtime: (new Date()).toLocaleString(),
         text: this.msg
       };
+			if (newComment.text == '' || newComment.text == null) {
+				return alert("不能发送空内容!!");
+			}
       // 从 localStorage 中获取最新数据, 并转换为 字符串
       let list = JSON.parse(localStorage.getItem("cmts") || "[]");
       // 把最新数据添加到第一个位置
@@ -69,6 +73,7 @@ export default {
       this.commetLists = list;
       // 再将数组对象保存到 localStorage 中
       localStorage.setItem("cmts", JSON.stringify(list));
+			
       // 清空文本框中的数据
       this.msg = "";
     }
