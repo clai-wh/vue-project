@@ -6,8 +6,8 @@
 			<div class="good-info">
 				<div class="bg-pad">
 					<div class="price">
-						<span>限时售价: {{ item.value }}</span>
-						<span>原价: {{ item.value * 1.5 }}</span>
+						<span>限时售价: {{ value }}</span>
+						<span>原价: {{ value * 1.5 }}</span>
 					</div>
 					<div class="state-now">
 						<span>热卖中</span>
@@ -25,6 +25,7 @@
 export default {
 	data() {
 		return {
+			value: 990,
 			goods: []
 		};
 	},

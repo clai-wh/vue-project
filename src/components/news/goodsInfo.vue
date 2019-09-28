@@ -27,7 +27,7 @@
 						<div class="price">
 							<span>
 								市场价:
-								<del>$1234</del>
+								<del>${{ goodPrice * 1.5 }}</del>
 							</span>
 							<span>
 								&nbsp;&nbsp; 销售价:
@@ -84,7 +84,7 @@ export default {
 			id: this.$route.params.id,
 			carousel: [],
 			goodsInfo: {},
-			goodPrice: 50,
+			goodPrice: 990,
 			counts: 1,
 			flag: false
 		};
@@ -113,8 +113,6 @@ export default {
 					// console.log(res.body.data.tech[2])
 					// 商品对象
 					this.goodsInfo = res.body.data.tech[2];
-					// 商品单价
-					this.goodPrice = this.goodPrice * parseInt(res.body.data.tech[2].tcount);
 				}
 			});
 		},
@@ -188,7 +186,6 @@ export default {
 		border-radius: 50%;
 		background-color: red;
 		z-index: 99;
-		// transform: translate(73px, 145px);
 	}
 	.price {
 		del {

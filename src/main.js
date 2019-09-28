@@ -74,7 +74,7 @@ let store = new Vuex.Store({
 		addToCar (state, goodObjInfo) {
 			// 默认购物车中没有找到需要的商品
 			let findGood = false;
-			// 找到了
+			// 找到了, some: 找到符合条件的数据后, 立即返回
 			state.car.some(item=>{
 				if(item.id == goodObjInfo.id){
 					item.count += parseInt(goodObjInfo.count);
@@ -86,12 +86,42 @@ let store = new Vuex.Store({
 			if (!findGood) {
 				state.car.push(goodObjInfo);
 			}
-			
 			// 实行本地永久存储
 			// 将最新数据 存储到 本地存储 localStorage
 			localStorage.setItem("car", JSON.stringify(state.car));
-			 
-			
+		},
+		// 更新购物车中的数据
+		updateShopCar (state, goodObjInfo) {
+			state.car.some(item=>{
+				if(item.id == goodObjInfo.id) {
+					item.count = parseInt(goodObjInfo.count)
+					// console.log(item)
+					return true;
+				}
+			});
+			// 更新完 商品的数量, 把最新的购物车数据保存到 本地存储 localStorage 中
+			localStorage.setItem("car", JSON.stringify(state.car));
+		},
+		// 删除购物车中的商品数据
+		removeGoods (state, id) {
+			state.car.some((item, i)=>{
+				if(item.id == id) {
+					state.car.splice(i, 1)
+					return true;
+				}
+			});
+			// 删除完后, 再把最新的数据保存到 本地存储 localStorage 中
+			localStorage.setItem("car", JSON.stringify(state.car));
+		},
+		// 修改购物车中的商品的状态
+		modifySelect (state, selectedInfo) {
+			state.car.some(item=>{
+				if(item.id == selectedInfo.id) {
+					item.selected = selectedInfo.selected;
+					return true;
+				}
+			});
+			localStorage.setItem("car", JSON.stringify(state.car));
 		}
 	},
 	// this.$store.getters.***
@@ -103,6 +133,41 @@ let store = new Vuex.Store({
 				c += item.count;
 			})
 			return c;
+		},
+		// 设置 在购物车中商品的数量
+		getGoodsCount (state) {
+			let goodsCounts = {};
+			state.car.forEach(item=>{
+				goodsCounts[item.id] = item.count
+			});
+			return goodsCounts;
+		},
+		// 设置购物车中商品 默认被选中
+		isSelected (state) {
+			let flag = {};
+			state.car.forEach(item=>{
+				flag[item.id] = item.selected
+			});
+			return flag;
+		},
+		// 计算商品数量和价格
+		calcAllGoodsCounts (state) {
+			// 定义一个对象, 来接收商品数据
+			// 默认所有商品均为选中状态
+			let obj = {
+				// 商品的数量
+				count: 0,
+				// 商品的总价
+				amount: 0
+			};
+			state.car.forEach(item=>{
+				// 判断商品是否被选中
+				if(item.selected) {
+					obj.count += item.count;
+					obj.amount += parseFloat(item.price * item.count);
+				}
+			});
+			return obj;
 		}
 	}
 })

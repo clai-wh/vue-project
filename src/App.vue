@@ -3,9 +3,9 @@
 		<!-- 顶部 header 区域 -->
 			<!-- <mt-header fixed title="爱凡之家"></mt-header> -->
 			<mt-header fixed title="爱凡之家">
-			  <router-link to="/home" slot="left">
-			    <mt-button @click="goBack" class="mui-icon mui-icon-back">返回</mt-button>
-			  </router-link>
+			  <span slot="left">
+			    <mt-button v-show="showBack" @click="goBack" class="mui-icon mui-icon-back">返回</mt-button>
+			  </span>
 			</mt-header>
 
 		<!-- 低部 tabBar 区域 -->
@@ -41,11 +41,28 @@
 
 <script>
 export default {
-	methods:{
+	data () {
+		return {
+			showBack: false
+		}
+	},
+	created () {
+		this.showBack = this.$route.path === "/home"? false:true;
+	},
+	methods: {
 		// 返回上个页面
 		goBack () {
-			// console.log(this);
 			this.$router.go(-1);
+		}
+	},
+	watch: {
+		"$route.path": function (newValue, oldValue) {
+			// console.log(newValue + " ---- " + oldValue)
+			if(newValue == "/home" || newValue == "/number" || newValue == "/shopCar" || newValue == "/search") {
+				this.showBack = false;
+			} else {
+				this.showBack = true;
+			}
 		}
 	}
 }
